@@ -8,8 +8,11 @@ import { axiosClient } from "../service/axios.service";
 interface Transactions { id: string; items: [TransactionDetail]; grandTotalPrice: number; createdAt:Date}
 interface TransactionDetail { name: string; amount: number; totalPrice: number; }
 
+interface TransactionsSimple { id: string; grandTotalPrice: number; createdAt:string}
+
 const ReportPage = () => {
     const [transactions, setTransactions] = useState<Transactions[]>([]);
+    const [transactionsSimple, setTransactionsSimple] = useState<TransactionsSimple[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const loggedUser = useSelector(selectUser);
 
@@ -40,10 +43,8 @@ const ReportPage = () => {
         };
         
         fetchReport();
-
+        
     }, []);
-
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
     return (
         <div> 

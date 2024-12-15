@@ -4,16 +4,18 @@ import { selectUser, setUser } from "../../app/authSlice";
 import jwt from "jwt-decode";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../elements/button";
-import { axiosClient, axiosPrivate } from "../../service/axios.service";
+import { axiosPrivate } from "../../service/axios.service";
 import useRefreshToken from "../../hooks/use-refresh-token";
+import { AxiosResponse } from "axios";
 
 const Navbar = () => {
   const loggedUser = useSelector(selectUser);
   const dispatch = useDispatch();
   const refresh = (loggedUser) ? useRefreshToken() : null;
-
+  const navigate = useNavigate();
+  
   const decodeAndStore = (token: string) => {
     const payload: { username: string } = jwt(token);
     dispatch(setUser({ username: payload.username }));
@@ -40,7 +42,24 @@ const Navbar = () => {
   );
 
   const logout = async (): Promise<void> => {
-    await axiosClient.post("/auth/logout");
+    const token = Cookies.get("token");
+    const headers = {
+        Authorization: 'Bearer ' + token
+    };
+    
+    const response = await axiosPrivate
+      .post("/auth/logout", { headers })
+      .then((resp: AxiosResponse) => { 
+        console.log(resp.data);
+        Cookies.remove("token");
+        navigate("/");
+      }) 
+      .catch(error => { 
+        console.error('There was an error!', error); 
+      })
+      .finally(() => {
+        
+      });
   };
 
   return (

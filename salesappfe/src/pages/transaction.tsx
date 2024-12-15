@@ -121,11 +121,13 @@ const TransactionPage = () => {
             >
             <ul> {products.map(product => ( <>
                 <li key={product.id}> {product.name} - Rp. {product.price} - Stok {product.stock}</li>
-                <input
-                    type="text"
-                    value={product.amount}
-                    onChange={event => handleInputChange(product.id, event)}
-                />
+                    Jumlah Beli <input
+                        key={`textBox_${product.id}`}
+                        type="text"
+                        value={product.amount}
+                        onChange={event => handleInputChange(product.id, event)}
+                    />
+                
             </>))}</ul>
             <Button isLoading={isLoading} value="Checkout!" type="submit" />
             </form>
