@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
                 )
+                .cors(Customizer.withDefaults())
                 .build();
     }
 

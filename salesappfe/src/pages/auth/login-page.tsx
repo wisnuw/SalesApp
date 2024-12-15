@@ -65,7 +65,7 @@ const LoginPage = () => {
     };
 
     return (
-        // <AuthLayout>
+        <AuthLayout>
           <form
             noValidate
             onSubmit={handleSubmit(onsubmit)}
@@ -108,7 +108,7 @@ const LoginPage = () => {
               </div>
             )}
           </form>
-        // </AuthLayout>
+        </AuthLayout>
     )
 }
 

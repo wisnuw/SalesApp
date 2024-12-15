@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { Link } from "react-router-dom";
 import Button from "../elements/button";
-import { axiosClient } from "../../service/axios.service";
+import { axiosClient, axiosPrivate } from "../../service/axios.service";
 import useRefreshToken from "../../hooks/use-refresh-token";
 
 const Navbar = () => {
@@ -27,7 +27,7 @@ const Navbar = () => {
     if (token) {
       decodeAndStore(token);
     } else {
-      refresh().then((token) => decodeAndStore(token));
+      // refresh().then((token) => decodeAndStore(token));
     }
   }, []);
 

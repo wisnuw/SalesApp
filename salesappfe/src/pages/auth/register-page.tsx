@@ -30,7 +30,7 @@ const RegisterPage = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [submissionErrors, setSubmissionErrors] = useState<string[]>([]);
   console.log(
-    "🚀 ~ file: regsiter-page.tsx:32 ~ RegisterPage ~ submissionErrors",
+    "🚀 ~ file: register-page.tsx:32 ~ RegisterPage ~ submissionErrors",
     submissionErrors
   );
 

@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/product")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ProductController {
     @Autowired
     ProductRepository productRepository;

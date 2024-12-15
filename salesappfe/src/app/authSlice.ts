@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit/dist/createAction";
 import { RootState } from "./store";
+import Cookies from "js-cookie";
 
 export type AuthStore = {
   username: string | null;
@@ -19,6 +20,7 @@ const authSlice = createSlice({
     },
     logoutUser(state) {
       state.username = null;
+      Cookies.remove("token");
     },
   },
 });
